@@ -32,8 +32,8 @@ gulp.task('default', () =>
 	gulp.src('src/*.marko')
 		.pipe(markoRender({
 			writeToDisk: false,
-	        preserveWhitespace: true,
-	        ext: "html"
+			preserveWhitespace: true,
+			ext: "html"
 		}))
 		.pipe(gulp.dest('dist'))
 );

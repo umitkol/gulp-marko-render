@@ -1,6 +1,6 @@
 {
   "name": "gulp-marko-render",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Gulp plugin for Marko template engine.",
   "main": "index.js",
   "scripts": {

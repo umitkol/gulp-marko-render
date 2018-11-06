@@ -25,6 +25,8 @@ function markoRender(options) {
       return;
     }
 
+    options = Object.assign({}, markoCompiler.defaultOptions, options);
+
     try {
       this.render = false;
       const data = file.data || {};
@@ -227,5 +229,7 @@ function doLoad(templatePath, templateSrc, options) {
 }
 
 module.exports = function (options) {
+  options = Object.assign({}, markoCompiler.defaultOptions, options);
+  require('marko/compiler').configure(options);
   return markoRender(options);
 };

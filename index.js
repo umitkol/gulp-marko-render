@@ -26,22 +26,22 @@ function markoRender(options) {
     }
 
     try {
-
+      this.render = false;
       const data = file.data || {};
       var tmpl = load(file.path, file.contents.toString(), options);
 
-      if (options.ext) {
+      if (options.ext && file.path.indexOf(options.onlyRenderPath) >= 0) {
         file.contents = new Buffer(tmpl.renderToString(data));
         file.path = gutil.replaceExtension(file.path, "." + options.ext);
+        this.push(file);
+        this.render = true;
       }
-
-      this.push(file);
 
     } catch (err) {
       this.emit('error', new gutil.PluginError('gulp-template', err, {fileName: file.path}));
+      throw new Error(err);
     }
-
-    cb(null, file);
+    cb(null, this.render ? file : null);
   });
 }
 

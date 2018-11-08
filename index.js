@@ -32,6 +32,9 @@ function markoRender(options) {
       const data = file.data || {};
       var tmpl = load(file.path, file.contents.toString(), options);
 
+      options.onlyRenderPath ? options.onlyRenderPath : "";
+      options.onlyRenderPath = options.onlyRenderPath.replace("\\", nodePath.sep);
+
       if (options.ext && file.path.indexOf(options.onlyRenderPath) >= 0) {
         file.contents = new Buffer(tmpl.renderToString(data));
         file.path = gutil.replaceExtension(file.path, "." + options.ext);
